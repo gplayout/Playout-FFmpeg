@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Playout.UI.Controls.PreviewPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:DirectShowControls="clr-namespace:Playout.DirectShow.Controls;assembly=Playout.DirectShow"
+             mc:Ignorable="d" Width="auto" Height="auto" Background="Black">
+    <Grid Name="gridMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" VerticalAlignment="Top" 
+                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}" 
+                BorderBrush="{StaticResource NeutralActionBrush}" BorderThickness="0,0,1,0">
+            <extra:AnimatedWrapPanel Grid.Column="0" Orientation="Vertical">
+                <metro:CommandButton Name="btnAddPreview" ToolTip="Add Preview" Header="Add"
+                    Margin="3" Style="{StaticResource AddSmallCommandButtonStyle}" Click="btnAddPreview_Click"/>
+            </extra:AnimatedWrapPanel>
+        </Border>
+        <Border Grid.Column="1"
+                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                Height="155" HorizontalAlignment="Stretch">
+            <!--<Grid x:Name="spPrevItems" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            </Grid>-->
+            <StackPanel Orientation="Horizontal" x:Name="spPrevItems" HorizontalAlignment="Stretch"></StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4C0FFEBD-E828-418E-97D1-A5E46EACFBA1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Playout.DirectShow</RootNamespace>
+    <AssemblyName>Playout.DirectShow</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DirectShowLib-2005, Version=2.0.0.0, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assemblies\DirectShowLib-2005.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="XMediaHelper">
+      <HintPath>..\..\02-References\XMediaHelper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DirectShow\Controls\MultimediaUtil.cs" />
+    <Compile Include="DirectShow\MediaPlayers\BaseClasses.cs" />
+    <Compile Include="DirectShow\MediaPlayers\MediaPlayerBase.cs" />
+    <Compile Include="DirectShow\MediaPlayers\MediaSeekingPlayer.cs" />
+    <Compile Include="DirectShow\MediaPlayers\MediaUriPlayer.cs" />
+    <Compile Include="DirectShow\MediaPlayers\MediaPreviewPlayer.cs" />
+    <Compile Include="DirectShow\Overlays\BaseOverlay.cs" />
+    <Compile Include="DirectShow\Overlays\SampleGrabberAudio.cs" />
+    <Compile Include="DirectShow\Overlays\PreviewSampleGrabber.cs" />
+    <Compile Include="DirectShow\Overlays\SampleGrabberOverlays.cs" />
+    <Compile Include="DirectShow\Overlays\CrawlOverlay.cs" />
+    <Compile Include="DirectShow\Overlays\TextOverlay.cs" />
+    <Compile Include="DirectShow\Overlays\ImageOverlay.cs" />
+    <Compile Include="DirectShow\Overlays\VideoOverlay.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\FilterGraphTools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assemblies\DirectShowLib-2005.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Playout.Log\Playout.Log.csproj">
+      <Project>{c7d67520-2c0e-43e8-90a8-ab0d35984417}</Project>
+      <Name>Playout.Log</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

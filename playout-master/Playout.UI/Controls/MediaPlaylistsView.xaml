@@ -1,0 +1,102 @@
+﻿<vbase:BaseUserControlView x:Class="Playout.UI.Controls.MediaPlaylistsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Playout.UI.Controls"
+             xmlns:vbase="clr-namespace:Playout.UI.Base"
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" x:Name="playlistView"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Name="gridMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dgPlaylist" ItemsSource="{Binding Playlists}" Grid.Column="0" SizeChanged="dgPlaylist_SizeChanged"
+                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"  SelectionMode="Extended" PreviewMouseDown="dgPlaylist_PreviewMouseDown"
+                  SelectedItem="{Binding SelectedPlaylist}" BorderThickness="2" SelectionChanged="dgPlaylist_SelectionChanged" PreviewMouseDoubleClick="dgPlaylist_PreviewMouseDoubleClick" >
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="MenuItemLoopAllPlaylist" Header="Loop On All Playlists" Click="MenuItemLoopAllPlaylist_Click" 
+                               IsChecked="{Binding LoopOnPlaylists}"/>
+                    <MenuItem Name="MenuItemLoopPlaylist" Header="Loop On Selected Playlist" InputGestureText="ALT+L" Click="MenuItemLoopPlaylist_Click"
+                              IsChecked="{Binding SelectedPlaylist.Loop}"/>
+                    <Separator/>
+                    <MenuItem Name="MenuItemPlaybackMode" Header="Playback Mode" Click="MenuItemPlaybackMode_Click"
+                              IsChecked="{Binding PlaybackMode}"/>
+                    <Separator/>
+                    <MenuItem Name="MenuItemNewPlaylist" Header="New Playlist" InputGestureText="CTRL+P" Click="MenuItemNewPlaylist_Click"/>
+                    <MenuItem Name="MenuItemOpenPlaylist" Header="Open Playlist" Click="MenuItemOpenPlaylist_Click"/>
+                    <MenuItem Name="MenuItemOpenPlaylists" Header="Open Multiple Playlists" Click="MenuItemOpenPlaylists_Click"/>
+                    <MenuItem Name="MenuItemSavePlaylist" Header="Save Playlist" Click="MenuItemSavePlaylist_Click"/>
+                    <MenuItem Name="MenuItemRemovePlaylist" Header="Remove Playlist(s)" Click="MenuItemRemovePlaylist_Click"/>
+                    <MenuItem Name="MenuItemChangeColorPlaylist" Header="Change Playlist Color" Click="MenuItemChangeColorPlaylist_Click"/>
+                    <MenuItem Name="MenuItemCopyPlaylist" Header="Copy Playlist(s)" Click="MenuItemCopyPlaylist_Click"/>
+                    <MenuItem Name="MenuItemPastePlaylist" Header="Paste Playlist(s)" Click="MenuItemPastePlaylist_Click" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="auto" CanUserSort="False" CanUserReorder="False"
+                        extra:DataGridColumnAttached.CanUserHideColumn="False"  AutomationProperties.Name="FA">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <extra:Icon Style="{StaticResource LoopIconStyle}" Height="15" Width="20" Margin="0,0,3,0" Foreground="Red"
+                                Visibility="{Binding Path=DataContext.LoopOnPlaylists,RelativeSource={RelativeSource AncestorType=vbase:BaseUserControlView,Mode=FindAncestor},Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <TextBlock>FA</TextBlock>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <extra:ExpanderMenu Grid.Column="0"
+                                                  IsExpanded="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}">
+                                    <extra:ExpanderMenuItem Name="expMenuUp" Style="{StaticResource UpExpanderMenuItemStyle}"
+                                                        Click="expMenuUp_Click"/>
+                                    <extra:ExpanderMenuItem Name="expMenuDown"  Style="{StaticResource DownExpanderMenuItemStyle}"
+                                                        Click="expMenuDown_Click"/>
+                                </extra:ExpanderMenu>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <extra:DataGridTemplateColumn extra:DataGridColumnAttached.CanUserHideColumn="True" 
+                            Header="Color" AutomationProperties.Name="Color" Width="auto" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Rectangle Width="20" Height="15" Fill="{Binding Path=ColorBrush}"></Rectangle>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </extra:DataGridTemplateColumn>
+                <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="True"  
+                                            AutomationProperties.Name="Name" Width="*"
+                                            Header="Name" Binding="{Binding Name}"/>
+                <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="True"  
+                                            IsReadOnly="True" AutomationProperties.Name="Length"
+                                          Header="Length" Binding="{Binding Path=MediaSourcesVM.FilesDuration,Converter={StaticResource TimeSpanToStringConverter}}"/>
+                <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="True"  
+                                            IsReadOnly="True" AutomationProperties.Name="TrimDuration"
+                                          Header="Duration" Binding="{Binding Path=MediaSourcesVM.FilesTrimDuration,Converter={StaticResource TimeSpanToStringConverter}}"/>
+                <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="True"
+                                          IsReadOnly="True" AutomationProperties.Name="Count"
+                                          Header="Count" Binding="{Binding Path=MediaSourcesVM.SourcesCount}"/>
+                <extra:DataGridTemplateColumn extra:DataGridColumnAttached.CanUserHideColumn="True" Header="Loop" AutomationProperties.Name="Loop" Width="30" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <extra:Icon Style="{StaticResource LoopIconStyle}" Visibility="{Binding Path=Loop,Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </extra:DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Grid.Column="1" Style="{StaticResource VerticalGridSplitterStyle}" Margin="7" />
+        <controls:MediaSourcesView x:Name="filesV" Grid.Column="2" DataContext="{Binding ElementName=dgPlaylist,Path=SelectedItem.MediaSourcesVM}"/>
+    </Grid>
+</vbase:BaseUserControlView>

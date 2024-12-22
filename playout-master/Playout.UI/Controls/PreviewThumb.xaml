@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Playout.UI.Controls.PreviewThumb"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:DirectShowControls="clr-namespace:Playout.DirectShow.Controls;assembly=Playout.DirectShow"
+             xmlns:controls="clr-namespace:Playout.UI.Controls"
+             mc:Ignorable="d" Background="Black" >
+    <Border  VerticalAlignment="Stretch" 
+         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}" 
+         Padding="3" BorderThickness="2">
+        <Border.Style>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush" Value="{StaticResource MouseOverBrush}"></Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsSelected,RelativeSource={RelativeSource AncestorType=controls:PreviewThumb}}" Value="True">
+                        <Setter Property="BorderBrush" Value="{StaticResource NegativeActionBrush}"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Grid Name="gridMain">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <controls:PreviewPlayer Grid.Row="0" x:Name="prevPlayer" Width="200" Height="112"></controls:PreviewPlayer>
+            <Border Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <extra:Icon x:Name="iconPlay" Height="15" Width="15" Margin="5,0,0,0" 
+                               MouseLeftButtonUp="iconPlay_MouseLeftButtonUp" Style="{StaticResource MediaPlayIconStyle}">
+                            </extra:Icon>
+                            <extra:Icon x:Name="iconStop" Height="15" Width="15" Margin="5,0,0,0"
+                                MouseLeftButtonUp="iconStop_MouseLeftButtonUp" Style="{StaticResource MediaStopIconStyle}">
+                            </extra:Icon>
+                        </StackPanel>
+                    </Border>
+                    <Border Margin="10,0,0,0" Padding="5,0,0,0" BorderThickness="2,0,0,0" BorderBrush="{StaticResource WarningActionBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <extra:Icon x:Name="iconEdit" Height="15" Width="15" Margin="8,0,0,0"
+                                ToolTip="Edit Media Item" MouseLeftButtonUp="iconEdit_MouseLeftButtonUp" 
+                                Style="{StaticResource Edit2IconStyle}">
+                            </extra:Icon>
+                            <extra:Icon x:Name="iconDelete" Height="15" Width="15" Margin="8,0,0,0"
+                                ToolTip="Delete Media Item" MouseLeftButtonUp="iconDelete_MouseLeftButtonUp" 
+                                Style="{StaticResource Delete1IconStyle}">
+                            </extra:Icon>
+                            <extra:Icon x:Name="iconPlayNow" Height="15" Width="15" Margin="8,0,0,0"
+                                ToolTip="Play Now" MouseLeftButtonUp="iconPlayNow_MouseLeftButtonUp" 
+                                Style="{StaticResource ControlPlayLiveIconStyle}">
+                            </extra:Icon>
+                            <extra:Icon x:Name="iconCopy" Height="15" Width="15" Margin="8,0,0,0"
+                                ToolTip="Copy Media Item" MouseLeftButtonUp="iconCopy_MouseLeftButtonUp" 
+                                Style="{StaticResource CopyIconStyle}">
+                            </extra:Icon>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

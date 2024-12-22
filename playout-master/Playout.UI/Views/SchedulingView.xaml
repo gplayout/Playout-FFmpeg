@@ -1,0 +1,14 @@
+﻿<vbase:BaseWindowView  x:Class="Playout.UI.Views.SchedulingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vbase="clr-namespace:Playout.UI.Base"
+        xmlns:controls="clr-namespace:Playout.UI.Controls"
+        xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:metro="http://schemas.codeplex.com/elysium"
+        xmlns:params="http://schemas.codeplex.com/elysium/params"
+        xmlns:extra="http://schemas.extra.com/ui"
+        Title="Scheduling" Height="600" Width="800">
+    <Grid>
+        <controls:SchedulesListView x:Name="schedulesV" />
+    </Grid>
+</vbase:BaseWindowView>

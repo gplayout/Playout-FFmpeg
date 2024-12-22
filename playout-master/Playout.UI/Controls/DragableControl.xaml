@@ -1,0 +1,60 @@
+﻿<vbase:BaseUserControlView x:Class="Playout.UI.Controls.DragableControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    xmlns:vbase="clr-namespace:Playout.UI.Base"
+    xmlns:metro="http://schemas.codeplex.com/elysium"
+    xmlns:params="http://schemas.codeplex.com/elysium/params" Focusable="True"
+    xmlns:extra="http://schemas.extra.com/ui" KeyUp="UserControl_KeyUp" Margin="5" MinWidth="100" MinHeight="50"
+    Background="{Binding Path=ViewModel.TextOverlayBackground,UpdateSourceTrigger=PropertyChanged}"
+    MouseUp="UserControl_MouseUp" Width="{Binding Path=ViewModel.Width,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+    Height="{Binding Path=ViewModel.Height,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+    MouseDown="UserControl_MouseDown" MouseMove="UserControl_MouseMove" MouseDoubleClick="UserControl_MouseDoubleClick">
+    <vbase:BaseUserControlView.Style>
+        <Style TargetType="{x:Type vbase:BaseUserControlView}">
+            <Setter Property="InkCanvas.Left" Value="{Binding Path=ViewModel.PositionLeft,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Setter>
+            <Setter Property="InkCanvas.Top" Value="{Binding Path=ViewModel.PositionTop,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Setter>
+        </Style>
+    </vbase:BaseUserControlView.Style>
+    <Grid>
+        <Border Name="border" Padding="10" 
+                TextBlock.FontFamily="{Binding Path=ViewModel.FontName,UpdateSourceTrigger=PropertyChanged}"
+                TextBlock.FontSize="{Binding Path=ViewModel.FontSize,UpdateSourceTrigger=PropertyChanged}">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{Binding Path=ViewModel.Color,UpdateSourceTrigger=PropertyChanged}"/>
+            </TextBlock.Foreground>
+            <Border.Background>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <MediaElement Stretch="Fill" IsMuted="True" LoadedBehavior="Play" Source="{Binding Path=ViewModel.MediaOverlayBackground,UpdateSourceTrigger=PropertyChanged}"></MediaElement>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.Background>
+            <StackPanel Orientation="Vertical" Margin="0,3,0,0">
+                <TextBlock Text="{Binding Path=TypeText}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        FontWeight="Bold" FontSize="12" Foreground="{Binding Path=ViewModel.OverlayCaptionForground}"/>
+                <TextBlock Text="{Binding Path=ViewModel.OverlayCaption}" VerticalAlignment="Center" FontSize="12"
+                           FlowDirection="{Binding Path=ViewModel.FlowDirection,UpdateSourceTrigger=PropertyChanged}"
+                           TextAlignment="{Binding Path=ViewModel.TextAlign,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="White" />
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Style.Triggers>
+                        <!-- Will change Border color when UserControl contains KeyboardFocus -->
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource 
+                                    AncestorType={x:Type vbase:BaseUserControlView}}, 
+                                    Path=IsFocused}" Value="true">
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="3" />
+                        </DataTrigger>
+                </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+    </Grid>
+</vbase:BaseUserControlView>

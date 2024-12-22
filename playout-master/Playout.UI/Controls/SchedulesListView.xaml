@@ -1,0 +1,65 @@
+﻿<vbase:BaseUserControlView x:Class="Playout.UI.Controls.SchedulesListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Playout.UI.Controls"
+             xmlns:vbase="clr-namespace:Playout.UI.Base"
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dgPlaylist" ItemsSource="{Binding Schedules}" Grid.Column="0"
+                          AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
+                  SelectionChanged="dgPlaylist_SelectionChanged">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="MenuItemNewPlaylist" Header="New Playlist" Click="MenuItemNewPlaylist_Click"/>
+                    <MenuItem Name="MenuItemOpenPlaylist" Header="Open Playlist" Click="MenuItemOpenPlaylist_Click"/>
+                    <MenuItem Name="MenuItemSavePlaylist" Header="Save Playlist" Click="MenuItemSavePlaylist_Click"/>
+                    <MenuItem Name="MenuItemRemovePlaylist" Header="Remove Playlist" Click="MenuItemRemovePlaylist_Click"/>
+                    <MenuItem Name="MenuItemSchedulePlaylist" Header="Schedule Playlist" Click="MenuItemSchedulePlaylist_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="FA" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <extra:ExpanderMenu Grid.Column="0"
+                                                  IsExpanded="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}">
+                                    <extra:ExpanderMenuItem Name="expMenuUp" Style="{StaticResource UpExpanderMenuItemStyle}"
+                                                        Click="expMenuUp_Click"/>
+                                    <extra:ExpanderMenuItem Name="expMenuDown"  Style="{StaticResource DownExpanderMenuItemStyle}"
+                                                        Click="expMenuDown_Click"/>
+                                </extra:ExpanderMenu>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="False"  
+                                            AutomationProperties.Name="Name" Width="*"
+                                            Header="Name" Binding="{Binding PlaylistVM.Name}"/>
+                <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="False"  
+                                            IsReadOnly="True"
+                                          Header="Length" Binding="{Binding Path=PlaylistVM.MediaSourcesVM.FilesDuration,Converter={StaticResource TimeSpanToStringConverter}}"/>
+                <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="False"  IsReadOnly="True" 
+                                          Header="Count" Binding="{Binding Path=MediaSourcesVM.SourcesCount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Grid.Column="1" Style="{StaticResource VerticalGridSplitterStyle}" Margin="7"/>
+        <controls:MediaSourcesView x:Name="filesSchV" Grid.Column="2" DataContext="{Binding ElementName=dgPlaylist,Path=SelectedItem.PlaylistVM.MediaSourcesVM}"/>
+    </Grid>
+</vbase:BaseUserControlView>

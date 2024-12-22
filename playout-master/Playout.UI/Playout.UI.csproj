@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B156498A-3075-48A4-A5EC-5FBADC050F93}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Playout.UI</RootNamespace>
+    <AssemblyName>Playout</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>playout-icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DirectShowLib-2005, Version=2.0.0.0, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Playout.DirectShow\Assemblies\DirectShowLib-2005.dll</HintPath>
+    </Reference>
+    <Reference Include="Elysium">
+      <HintPath>..\packages\Elysium.Theme.2.0.4\lib\net45\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Codes\DataGridExtentions.cs" />
+    <Compile Include="Codes\emDataGridOptions.cs" />
+    <Compile Include="Codes\ExtendedDataGridTemplateColumn .cs" />
+    <Compile Include="Codes\MainShortcuts.cs" />
+    <Compile Include="Controls\DataGridDropCap.cs" />
+    <Compile Include="Controls\DragableControl.xaml.cs">
+      <DependentUpon>DragableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OverlayEditors\CrawlEditor.xaml.cs">
+      <DependentUpon>CrawlEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OverlayEditors\VideoEditor.xaml.cs">
+      <DependentUpon>VideoEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OverlayEditors\ImageEditor.xaml.cs">
+      <DependentUpon>ImageEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OverlayEditors\TextEditor.xaml.cs">
+      <DependentUpon>TextEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PreviewThumb.xaml.cs">
+      <DependentUpon>PreviewThumb.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PreviewPanel.xaml.cs">
+      <DependentUpon>PreviewPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PreviewPlayer.xaml.cs">
+      <DependentUpon>PreviewPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Player.xaml.cs">
+      <DependentUpon>Player.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RangeSlider.xaml.cs">
+      <DependentUpon>RangeSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VUMeter.xaml.cs">
+      <DependentUpon>VUMeter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SchedulesListView.xaml.cs">
+      <DependentUpon>SchedulesListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lock\ActivationView.xaml.cs">
+      <DependentUpon>ActivationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lock\DeactivationView.xaml.cs">
+      <DependentUpon>DeactivationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoveToDialogView.xaml.cs">
+      <DependentUpon>MoveToDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecordView.xaml.cs">
+      <DependentUpon>RecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimerSettingsView.xaml.cs">
+      <DependentUpon>TimerSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaylistScheduleView.xaml.cs">
+      <DependentUpon>PlaylistScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SchedulingView.xaml.cs">
+      <DependentUpon>SchedulingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaSourceView.xaml.cs">
+      <DependentUpon>MediaSourceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FFMpegView.xaml.cs">
+      <DependentUpon>FFMpegView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OverlayMediaView.xaml.cs">
+      <DependentUpon>OverlayMediaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaOverlayPreviewView.xaml.cs">
+      <DependentUpon>MediaOverlayPreviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrimMediaView.xaml.cs">
+      <DependentUpon>TrimMediaView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\DragableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MediaSourcesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OverlayEditors\CrawlEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OverlayEditors\VideoEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OverlayEditors\ImageEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OverlayEditors\TextEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PreviewThumb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PreviewPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PreviewPlayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Player.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VUMeter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lock\ActivationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lock\DeactivationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MoveToDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecordView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TimerSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MediaPlaylistsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PlayerControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RangeSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SchedulesListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlaylistScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Base\BaseDialogView.cs" />
+    <Compile Include="Base\BaseUserControlView.cs" />
+    <Compile Include="Base\BaseWindowView.cs" />
+    <Compile Include="Controls\MediaSourcesView.xaml.cs">
+      <DependentUpon>MediaSourcesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputSettingsView.xaml.cs">
+      <DependentUpon>OutputSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MediaPlaylistsView.xaml.cs">
+      <DependentUpon>MediaPlaylistsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlayerControlView.xaml.cs">
+      <DependentUpon>PlayerControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\SchedulingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MediaSourceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FFMpegView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OverlayMediaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MediaOverlayPreviewView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TrimMediaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="playout-icon.ico" />
+    <Content Include="Resources\CategoryIcons\news.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\CategoryIcons\sport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\CheckBoard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\NoImage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\ResetCard.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\VideoOverlay.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.UI\Framework.UI.csproj">
+      <Project>{925d4016-8d41-4e81-9287-695c5a1e1e85}</Project>
+      <Name>Framework.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{20d52b40-00b7-40d1-a3a0-56f3d900c0d6}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.ApplicationService\Playout.ApplicationService.csproj">
+      <Project>{1e5edfe0-890e-4c78-bc62-46afd28b6819}</Project>
+      <Name>Playout.ApplicationService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.Base\Playout.Base.csproj">
+      <Project>{6c4f9d42-23d4-4c4a-b9e5-9f70c042d633}</Project>
+      <Name>Playout.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.DataService\Playout.DataService.csproj">
+      <Project>{8158c5fc-d0a5-4ea0-8138-b1a1690ed28f}</Project>
+      <Name>Playout.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.DirectShow\Playout.DirectShow.csproj">
+      <Project>{4c0ffebd-e828-418e-97d1-a5e46eacfba1}</Project>
+      <Name>Playout.DirectShow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.DI\Playout.DI.csproj">
+      <Project>{2688f249-c0d9-46ae-be98-11db0ca9e53e}</Project>
+      <Name>Playout.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.Log\Playout.Log.csproj">
+      <Project>{c7d67520-2c0e-43e8-90a8-ab0d35984417}</Project>
+      <Name>Playout.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.MediaFramework\Playout.MediaFramework.csproj">
+      <Project>{fecbb222-ba32-44b2-b1e5-9324729189a5}</Project>
+      <Name>Playout.MediaFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.Models\Playout.Models.csproj">
+      <Project>{5c23020e-c9ee-4963-8a57-e8780f671db6}</Project>
+      <Name>Playout.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.ViewModels\Playout.ViewModels.csproj">
+      <Project>{4148ef9e-5b5d-40bf-a5bc-aabeabd21d59}</Project>
+      <Name>Playout.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

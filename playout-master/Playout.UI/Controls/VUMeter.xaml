@@ -1,0 +1,55 @@
+﻿<vbase:BaseUserControlView x:Class="Playout.UI.Controls.VUMeter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Playout.UI.Controls"
+             xmlns:vbase="clr-namespace:Playout.UI.Base"
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="gaugeBack" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF90000"/>
+            <GradientStop Color="#FF17FF00" Offset="1"/>
+            <GradientStop Color="#FEE26610" Offset="0.1"/>
+            <GradientStop Color="#FEF1D139" Offset="0.46"/>
+            <GradientStop Color="#FEADF137" Offset="0.82"/>
+            <GradientStop Color="#FEF58D25" Offset="0.277"/>
+        </LinearGradientBrush>
+        <Style TargetType="Border" x:Key="brdGauge">
+            <Setter Property="Background" Value="{StaticResource gaugeBack}"/>
+            <Setter Property="BorderBrush" Value="Blue"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Border Name="brdLeft" Grid.Column="0" Style="{StaticResource brdGauge}">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Name="brdLeftTop" Background="Black"></Border>
+                <Border Grid.Row="1" Name="brdLeftBottom" Background="Transparent" Height="{Binding Path=LeftVU}" ></Border>
+            </Grid>
+        </Border>
+        <Border Name="brdRight" Grid.Column="1" Style="{StaticResource brdGauge}">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Name="brdRightTop" Background="Black"></Border>
+                <Border Grid.Row="1" Name="brdRightBottom" Background="Transparent" Height="{Binding Path=RightVU}" ></Border>
+            </Grid>
+        </Border>
+    </Grid>
+</vbase:BaseUserControlView>

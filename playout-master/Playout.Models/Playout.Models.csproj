@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5C23020E-C9EE-4963-8A57-E8780F671DB6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Playout.Models</RootNamespace>
+    <AssemblyName>Playout.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="StreamModel.cs" />
+    <Compile Include="RecordModel.cs" />
+    <Compile Include="GlobalSettingModel.cs" />
+    <Compile Include="CrawlOverlayMediaModel.cs" />
+    <Compile Include="PreviewItemsModel.cs" />
+    <Compile Include="VideoOverlayModel.cs" />
+    <Compile Include="ImageOverlayModel.cs" />
+    <Compile Include="MediaSourceModel.cs" />
+    <Compile Include="MediaPlaylistModel.cs" />
+    <Compile Include="OutputSettingModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleModel.cs" />
+    <Compile Include="SettingsModel.cs" />
+    <Compile Include="StringOverlayMediaModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Playout.Base\Playout.Base.csproj">
+      <Project>{6c4f9d42-23d4-4c4a-b9e5-9f70c042d633}</Project>
+      <Name>Playout.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.DirectShow\Playout.DirectShow.csproj">
+      <Project>{4c0ffebd-e828-418e-97d1-a5e46eacfba1}</Project>
+      <Name>Playout.DirectShow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.Log\Playout.Log.csproj">
+      <Project>{c7d67520-2c0e-43e8-90a8-ab0d35984417}</Project>
+      <Name>Playout.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Playout.MediaFramework\Playout.MediaFramework.csproj">
+      <Project>{fecbb222-ba32-44b2-b1e5-9324729189a5}</Project>
+      <Name>Playout.MediaFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
